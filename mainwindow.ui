@@ -18,616 +18,616 @@
   </property>
   <property name="font">
    <font>
-    <pointsize>20</pointsize>
+    <pointsize>16</pointsize>
    </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_5">
-    <item>
-     <widget class="QStackedWidget" name="stack">
+   <widget class="QStackedWidget" name="stack">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>757</width>
+      <height>593</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Comic Sans MS</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="currentIndex">
+     <number>4</number>
+    </property>
+    <widget class="QWidget" name="page_1">
+     <property name="font">
+      <font>
+       <family>Comic Sans MS</family>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>251</x>
+        <y>211</y>
+        <width>240</width>
+        <height>182</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>14</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>30</pointsize>
+           <bold>false</bold>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string>Крокодил</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnStart">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Начать игру</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnExit">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Выход</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QPushButton" name="btnStartGame">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>480</y>
+        <width>221</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Старт</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>20</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Игроки</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>10</y>
+        <width>111</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Режим</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>110</y>
+        <width>217</width>
+        <height>195</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>20</number>
+       </property>
+       <item>
+        <widget class="QRadioButton" name="radioEasy">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Легкий</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioMedium">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Средний</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioHard">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Сложный</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>110</y>
+        <width>301</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QListWidget" name="listPlayers"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnAddPlayer">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Добавить игрока</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnRemovePlayer">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Удалить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_4">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <widget class="QLabel" name="lblWordHeader">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>741</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ход:                                                Раунд: №</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>90</y>
+        <width>291</width>
+        <height>61</height>
+       </rect>
+      </property>
       <property name="font">
        <font>
         <family>Comic Sans MS</family>
         <pointsize>20</pointsize>
        </font>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
+      <property name="text">
+       <string>Выберите слово:</string>
       </property>
-      <widget class="QWidget" name="page_1">
-       <property name="font">
-        <font>
-         <family>Comic Sans MS</family>
-         <pointsize>20</pointsize>
-        </font>
+     </widget>
+     <widget class="QPushButton" name="btnConfirmWord">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>440</y>
+        <width>221</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Comic Sans MS</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Продолжить</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>180</y>
+        <width>217</width>
+        <height>203</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="spacing">
+        <number>24</number>
        </property>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>251</x>
-          <y>211</y>
-          <width>240</width>
-          <height>182</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-         <property name="spacing">
-          <number>14</number>
+       <item>
+        <widget class="QRadioButton" name="radioWord0">
+         <property name="text">
+          <string>RadioButton</string>
          </property>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>30</pointsize>
-             <bold>false</bold>
-             <strikeout>false</strikeout>
-            </font>
-           </property>
-           <property name="text">
-            <string>Крокодил</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnStart">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Начать игру</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnExit">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Выход</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_3">
-       <widget class="QPushButton" name="btnStartGame">
-        <property name="geometry">
-         <rect>
-          <x>500</x>
-          <y>480</y>
-          <width>221</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Старт</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_2">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>20</y>
-          <width>141</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Игроки</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>490</x>
-          <y>10</y>
-          <width>111</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Режим</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>490</x>
-          <y>110</y>
-          <width>217</width>
-          <height>195</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="spacing">
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioWord1">
+         <property name="text">
+          <string>RadioButton</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="radioWord2">
+         <property name="text">
+          <string>RadioButton</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_6">
+     <widget class="QLabel" name="lblWordHeader_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>751</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ход:                                                Раунд: №</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblTimer">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>20</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1:00</string>
+      </property>
+     </widget>
+     <widget class="DrawingCanvas" name="canvas" native="true">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>120</y>
+        <width>581</width>
+        <height>361</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnFinish">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>540</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Comic Sans MS</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Завершить</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>540</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="lblWord">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>lblWord</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnHideWord">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>скрыть</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>117</y>
+        <width>111</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QWidget" name="paletteArea" native="true"/>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinWidth">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
           <number>20</number>
          </property>
-         <item>
-          <widget class="QRadioButton" name="radioEasy">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>16</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Легкий</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioMedium">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>16</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Средний</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioHard">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>16</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Сложный</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>110</y>
-          <width>301</width>
-          <height>401</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QListWidget" name="listPlayers"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnAddPlayer">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Добавить игрока</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnRemovePlayer">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Удалить</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_4">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <widget class="QLabel" name="lblWordHeader">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>751</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Ход:                                                Раунд: №</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_4">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>110</y>
-          <width>111</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Comic Sans MS</family>
-          <pointsize>17</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Режим:</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_5">
-        <property name="geometry">
-         <rect>
-          <x>240</x>
-          <y>90</y>
-          <width>291</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Comic Sans MS</family>
-          <pointsize>20</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Выберите слово:</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btnConfirmWord">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>430</y>
-          <width>251</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Продолжить</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>180</y>
-          <width>217</width>
-          <height>203</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <property name="spacing">
-          <number>24</number>
+         <property name="value">
+          <number>3</number>
          </property>
-         <item>
-          <widget class="QRadioButton" name="radioWord0">
-           <property name="text">
-            <string>RadioButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioWord1">
-           <property name="text">
-            <string>RadioButton</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioWord2">
-           <property name="text">
-            <string>RadioButton</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_6">
-       <widget class="QLabel" name="lblWordHeader_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>751</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Ход:                                                Раунд: №</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lblTimer">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>20</y>
-          <width>71</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>1:00</string>
-        </property>
-       </widget>
-       <widget class="DrawingCanvas" name="canvas" native="true">
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>120</y>
-          <width>581</width>
-          <height>361</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btnFinish">
-        <property name="geometry">
-         <rect>
-          <x>550</x>
-          <y>530</y>
-          <width>191</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Завершить</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>540</y>
-          <width>231</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="lblWord">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>14</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>lblWord</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnHideWord">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>скрыть</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>117</y>
-          <width>111</width>
-          <height>361</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_6">
-         <item>
-          <widget class="QWidget" name="paletteArea" native="true"/>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="spinWidth">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>20</number>
-           </property>
-           <property name="value">
-            <number>3</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnClear">
-           <property name="font">
-            <font>
-             <family>Comic Sans MS</family>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Очистить</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <zorder>layoutWidget</zorder>
-       <zorder>layoutWidget</zorder>
-       <zorder>lblWordHeader_2</zorder>
-       <zorder>lblTimer</zorder>
-       <zorder>canvas</zorder>
-       <zorder>btnFinish</zorder>
-      </widget>
-      <widget class="QWidget" name="page_7">
-       <widget class="QLabel" name="lblScoreHeader">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>20</y>
-          <width>201</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Расчет очков</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="scoreArea" native="true">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>110</y>
-          <width>401</width>
-          <height>341</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btnContinue">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>480</y>
-          <width>231</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Продолжить</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_8">
-       <widget class="QLabel" name="lblWinner">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>190</y>
-          <width>221</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Comic Sans MS</family>
-          <pointsize>24</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btnNewGame">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>450</y>
-          <width>231</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Новая игра</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_11">
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>70</y>
-          <width>121</width>
-          <height>111</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Comic Sans MS</family>
-          <pointsize>24</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Меню</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="btnMenuOk">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>420</y>
-          <width>121</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>ОК</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>210</y>
-          <width>260</width>
-          <height>142</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <property name="spacing">
-          <number>24</number>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnClear">
+         <property name="font">
+          <font>
+           <family>Comic Sans MS</family>
+           <pointsize>12</pointsize>
+          </font>
          </property>
-         <item>
-          <widget class="QPushButton" name="btnMenuReset">
-           <property name="text">
-            <string>Сбросить игру</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnMenuExit">
-           <property name="text">
-            <string>Выйти из игры</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+         <property name="text">
+          <string>Очистить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-    </item>
-   </layout>
+     <zorder>layoutWidget</zorder>
+     <zorder>layoutWidget</zorder>
+     <zorder>lblWordHeader_2</zorder>
+     <zorder>lblTimer</zorder>
+     <zorder>canvas</zorder>
+     <zorder>btnFinish</zorder>
+    </widget>
+    <widget class="QWidget" name="page_7">
+     <widget class="QLabel" name="lblScoreHeader">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>20</y>
+        <width>201</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Расчет очков</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="scoreArea" native="true">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>120</y>
+        <width>541</width>
+        <height>321</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnContinue">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>470</y>
+        <width>221</width>
+        <height>55</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Продолжить</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_8">
+     <widget class="QLabel" name="lblWinner">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>190</y>
+        <width>441</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Comic Sans MS</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnNewGame">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>450</y>
+        <width>231</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Новая игра</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_11">
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>70</y>
+        <width>121</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Comic Sans MS</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Меню</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnMenuOk">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>420</y>
+        <width>121</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ОК</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>210</y>
+        <width>260</width>
+        <height>142</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="spacing">
+        <number>24</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="btnMenuReset">
+         <property name="text">
+          <string>Сбросить игру</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnMenuExit">
+         <property name="text">
+          <string>Выйти из игры</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <customwidgets>

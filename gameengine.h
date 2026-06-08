@@ -7,59 +7,47 @@
 #include "playermanager.h"
 #include "worddictionary.h"
 
-// Главный "мозг" игры. Управляет сессией, ходами, словами, таймером и очками.
-// Соответствует компоненту "Game Engine"
-// (Session Manager + Logic Controller + Scoring System + Timer).
-//
-// Важно: таймер здесь НЕ привязан к Qt. Движок просто хранит "сколько секунд осталось".
-// В графическом интерфейсе будет QTimer, который раз в секунду вызывает tick().
-// Так логика остаётся простой и не зависит от Qt.
 class GameEngine {
 public:
     GameEngine();
 
-    // ================= СЕССИЯ (Session Manager) =================
-    // Начать новую игру: задаём сложность и нужное для победы число очков (по ТЗ — 20).
+    // Игровая сессия
     void startSession(Difficulty difficulty, int targetScore = 20);
     bool isSessionActive() const;            // идёт ли сейчас игра
 
     // Доступ к менеджеру игроков (добавить/удалить/переименовать игроков до старта).
     PlayerManager& players();
 
-    // ================= ХОД / РАУНД (Logic Controller) =================
-    // Начать новый ход: вычисляем художника и получаем 3 слова на выбор.
+    // Ход/раунд
     void startTurn();
 
     int currentRound() const;                // номер текущего раунда
     int currentArtistIndex() const;          // номер игрока-художника
     std::string currentArtistName() const;   // имя художника
 
-    // Три случайных слова, которые показываем художнику (ТЗ 3.1.5).
+    // Три случайных слова, которые показываем художнику
     std::vector<std::string> wordChoices() const;
 
-    // Художник выбрал слово (по номеру 0..2). ТЗ: "Выбрать слово".
+    // Художник выбрал слово
     void chooseWord(int wordIndex);
     std::string chosenWord() const;          // загаданное слово
 
-    // ================= ТАЙМЕР (Timer) =================
-    // Запустить таймер хода (ТЗ 3.1.7 — 60 секунд).
+    // Таймер 60 сек
     void startTimer(int seconds = 60);
     void tick();                             // вызывать раз в секунду из QTimer
     int secondsLeft() const;                 // сколько секунд осталось
     bool isTimeUp() const;                   // время вышло?
-    void endTurnEarly();                     // досрочно завершить ход (ТЗ 3.1.9)
+    void endTurnEarly();                     // досрочно завершить ход
 
-    // ================= ОЧКИ (Scoring System) =================
-    // Начислить очки игроку по номеру. По ТЗ 3.1.10/3.1.11 за угадывание даётся +3.
-    // points может быть и отрицательным, если нажали "минус" на экране расчёта.
+    // Очки
     void addPoints(int playerIndex, int points);
 
-    // ================= КОНЕЦ ИГРЫ =================
+    // Конец
     bool isGameOver() const;                 // кто-то набрал нужные очки?
     int winnerIndex() const;                 // номер победителя (или -1)
     std::string winnerName() const;          // имя победителя
 
-    // Полный сброс игры для новой партии (ТЗ: "Сбросить игру", "Новая игра").
+    // Сброс игры
     void resetGame();
 
 private:
@@ -78,4 +66,4 @@ private:
     int  m_secondsLeft;           // осталось секунд на таймере
 };
 
-#endif // GAMEENGINE_H
+#endif

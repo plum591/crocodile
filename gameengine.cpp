@@ -132,4 +132,8 @@ void GameEngine::resetGame() {
     m_chosenWord = "";
     m_wordChoices.clear();
     m_players.resetAllScores();
+
+    while (m_players.count() > 0) {
+        m_players.removePlayer(0);
+    }
 }

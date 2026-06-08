@@ -59,23 +59,23 @@ MainWindow::MainWindow(QWidget* parent)
 
     // --- Плавающие кнопки "≡" и "?" ---
     m_btnMenu = new QPushButton("≡", this);
-    m_btnMenu->setFixedSize(44, 44);
-    m_btnMenu->move(10, 10);
+    m_btnMenu->setFixedSize(26, 26);
+    m_btnMenu->move(10, 11);
     m_btnMenu->setStyleSheet(
         "QPushButton { background-color: #557A48; color: white;"
-        " font-size: 18pt; border-radius: 8px; border: none; padding: 0; }"
+        " font-size: 16pt; border-radius: 7px; border: none; padding: 0; }"
         "QPushButton:hover { background-color: #7FA86E; }");
     connect(m_btnMenu, &QPushButton::clicked, this, &MainWindow::onOpenMenu);
 
     m_btnHelp = new QPushButton("?", this);
-    m_btnHelp->setFixedSize(44, 44);
+    m_btnHelp->setFixedSize(26, 26);
     m_btnHelp->setStyleSheet(
         "QPushButton { background-color: #C8A96E; color: white;"
-        " font-size: 18pt; font-weight: bold; border-radius: 22px; border: none; }"
+        " font-size: 14pt; font-weight: bold; border-radius: 13px; border: none; }"
         "QPushButton:hover { background-color: #E0C080; }");
     connect(m_btnHelp, &QPushButton::clicked, this, &MainWindow::onShowRules);
 
-    // Стартуем с главного меню
+
     ui->stack->setCurrentIndex(0);
 }
 
@@ -83,24 +83,21 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-// ================================================================
-//  RESIZE — держим плавающие кнопки на месте
-// ================================================================
 void MainWindow::resizeEvent(QResizeEvent* event) {
     QMainWindow::resizeEvent(event);
     if (m_btnMenu) {
-        m_btnMenu->move(10, 10);
+        m_btnMenu->move(10, 11);
         m_btnMenu->raise();
     }
     if (m_btnHelp) {
-        m_btnHelp->move(10, height() - 54);
+        m_btnHelp->move(740, 11);
         m_btnHelp->raise();
     }
 }
 
-// ================================================================
-//  ЭКРАН 0 — Главное меню
-// ================================================================
+
+//ЭКРАН 0 — Главное меню
+
 void MainWindow::onStart() {
     ui->listPlayers->clear();
     ui->stack->setCurrentIndex(1);
@@ -110,9 +107,7 @@ void MainWindow::onExit() {
     close();
 }
 
-// ================================================================
 //  ЭКРАН 1 — Создание игры
-// ================================================================
 void MainWindow::onAddPlayer() {
     bool ok = false;
     QString name = QInputDialog::getText(this, "Новый игрок",
@@ -151,9 +146,7 @@ void MainWindow::onStartGame() {
     showWordScreen();
 }
 
-// ================================================================
 //  ЭКРАН 2 — Выбор слова
-// ================================================================
 void MainWindow::showWordScreen() {
     QString header = QString("Ход: %1   |   Раунд: %2")
         .arg(QString::fromStdString(m_game.currentArtistName()))
@@ -178,18 +171,23 @@ void MainWindow::onConfirmWord() {
     showDrawScreen();
 }
 
-// ================================================================
 //  ЭКРАН 3 — Рисование
-// ================================================================
 void MainWindow::showDrawScreen() {
-    QString header = QString("Ход: %1   |   Раунд: %2")
-        .arg(QString::fromStdString(m_game.currentArtistName()))
-        .arg(m_game.currentRound());
+    // Ход слева, Раунд справа через HTML
+    QString header = QString(
+    "<table width='100%'>"
+    "<tr>"
+    "<td align='left'>Ход: %1</td>"
+    "<td align='right'>Раунд: %2</td>"
+    "</tr>"
+    "</table>")
+    .arg(QString::fromStdString(m_game.currentArtistName()))
+    .arg(m_game.currentRound());
     ui->lblWordHeader_2->setText(header);
 
-    m_wordHidden = false;
-    ui->btnHideWord->setText("Скрыть");
-    ui->lblWord->setText(QString::fromStdString(m_game.chosenWord()));
+    m_wordHidden =  true;
+    ui->btnHideWord->setText("Показать");
+    ui->lblWord->setText("• • • • •");
 
     ui->canvas->clear();
     ui->canvas->setPenColor(Qt::black);
@@ -201,7 +199,6 @@ void MainWindow::showDrawScreen() {
 
     ui->stack->setCurrentIndex(3);
 }
-
 void MainWindow::onTimerTick() {
     m_game.tick();
     updateTimerLabel();
@@ -240,9 +237,7 @@ void MainWindow::onHideWord() {
     }
 }
 
-// ================================================================
 //  ПАЛИТРА
-// ================================================================
 void MainWindow::buildPalette() {
     QGridLayout* grid = new QGridLayout(ui->paletteArea);
     grid->setSpacing(5);
@@ -295,26 +290,29 @@ void MainWindow::buildPalette() {
     grid->addWidget(btnEraser, row + 2, 0, 1, 2);
 }
 
-// ================================================================
 //  ЭКРАН 4 — Расчёт очков
-// ================================================================
 void MainWindow::showScoreScreen() {
-    // Очищаем предыдущие строки
-    QLayout* old = ui->scoreArea->layout();
-    if (old) {
+    // Удаляем все старые виджеты полностью
+    if (ui->scoreArea->layout()) {
         QLayoutItem* item;
-        while ((item = old->takeAt(0)) != nullptr) {
+        while ((item = ui->scoreArea->layout()->takeAt(0)) != nullptr) {
             if (item->widget()) item->widget()->deleteLater();
             delete item;
         }
-        delete old;
+        delete ui->scoreArea->layout();
+    }
+    for (QWidget* w : ui->scoreArea->findChildren<QWidget*>(
+             QString(), Qt::FindDirectChildrenOnly)) {
+        w->deleteLater();
     }
 
     QVBoxLayout* box = new QVBoxLayout(ui->scoreArea);
-    box->setSpacing(8);
+    box->setSpacing(4);
+    box->setContentsMargins(8, 8, 8, 8);
 
     for (int i = 0; i < m_game.players().count(); i++) {
         QHBoxLayout* row = new QHBoxLayout();
+        row->setSpacing(8);
 
         QLabel* lblName = new QLabel(
             QString::fromStdString(m_game.players().player(i).name()));
@@ -322,10 +320,9 @@ void MainWindow::showScoreScreen() {
 
         QPushButton* btnPlus  = new QPushButton("+3");
         QPushButton* btnMinus = new QPushButton("-3");
-        btnPlus->setFixedSize(60, 36);
-        btnMinus->setFixedSize(60, 36);
+        btnPlus->setFixedSize(55, 32);
+        btnMinus->setFixedSize(55, 32);
 
-        // Стиль кнопок +/-
         btnPlus->setStyleSheet(
             "QPushButton { background-color:#4FAF5A; color:white;"
             " border-radius:8px; font-size:11pt; font-weight:bold; border:none; }"
@@ -337,7 +334,7 @@ void MainWindow::showScoreScreen() {
 
         QLabel* lblScore = new QLabel(
             QString("%1 / 20").arg(m_game.players().player(i).score()));
-        lblScore->setMinimumWidth(70);
+        lblScore->setMinimumWidth(90);
 
         connect(btnPlus, &QPushButton::clicked, this, [this, i, lblScore]() {
             m_game.addPoints(i, 3);
@@ -354,9 +351,11 @@ void MainWindow::showScoreScreen() {
         row->addWidget(btnPlus);
         row->addWidget(btnMinus);
         row->addWidget(lblScore);
+        row->addStretch();
         box->addLayout(row);
     }
 
+    box->addStretch();
     ui->stack->setCurrentIndex(4);
 }
 
@@ -372,9 +371,7 @@ void MainWindow::onContinue() {
     }
 }
 
-// ================================================================
 //  ЭКРАН 5 — Конец игры
-// ================================================================
 void MainWindow::onNewGame() {
     m_game.resetGame();
     ui->listPlayers->clear();
@@ -382,9 +379,7 @@ void MainWindow::onNewGame() {
     ui->stack->setCurrentIndex(0);
 }
 
-// ================================================================
 //  ПЛАВАЮЩИЕ КНОПКИ
-// ================================================================
 void MainWindow::onShowRules() {
     QMessageBox::information(this, "Правила игры «Крокодил»",
         "1. Добавьте игроков и выберите режим сложности.\n"
@@ -403,9 +398,7 @@ void MainWindow::onOpenMenu() {
     ui->stack->setCurrentIndex(6);
 }
 
-// ================================================================
-//  МЕНЮ ПАУЗЫ (страница 6)
-// ================================================================
+//  МЕНЮ ПАУЗЫ
 void MainWindow::onMenuReset() {
     m_timer->stop();
     m_game.resetGame();

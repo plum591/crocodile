@@ -61,7 +61,7 @@ void DrawingCanvas::mouseMoveEvent(QMouseEvent* event) {
     }
 }
 
-void DrawingCanvas::resizeEvent(QResizeEvent* /*event*/) {
+void DrawingCanvas::resizeEvent(QResizeEvent*) {
     if (width() > m_image.width() || height() > m_image.height()) {
         QImage newImage(size(), QImage::Format_RGB32);
         newImage.fill(Qt::white);

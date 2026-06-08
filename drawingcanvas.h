@@ -6,9 +6,6 @@
 #include <QColor>
 #include <QPoint>
 
-// Холст для рисования (экран "Рисование", ТЗ 3.1.6).
-// Рисуем на картинке (QImage) мышью. Можно менять цвет, толщину,
-// а также включать ластик (стирает = рисует белым).
 class DrawingCanvas : public QWidget {
     Q_OBJECT
 public:

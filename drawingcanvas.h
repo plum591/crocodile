@@ -34,4 +34,4 @@ private:
     QPoint  m_lastPoint;   // предыдущая точка (чтобы вести линию)
 };
 
-#endif // DRAWINGCANVAS_H
+#endif

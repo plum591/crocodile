@@ -10,12 +10,6 @@ void PlayerManager::removePlayer(int index) {
     }
 }
 
-void PlayerManager::renamePlayer(int index, const std::string& newName) {
-    if (index >= 0 && index < (int)m_players.size()) {
-        m_players[index].setName(newName);
-    }
-}
-
 int PlayerManager::count() const {
     return (int)m_players.size();
 }

@@ -10,15 +10,13 @@ GameEngine::GameEngine()
 {
 }
 
-// ================= СЕССИЯ =================
-
 void GameEngine::startSession(Difficulty difficulty, int targetScore) {
     m_difficulty   = difficulty;
     m_targetScore  = targetScore;
     m_sessionActive = true;
-    m_round = 0;            // первый startTurn() сделает раунд 1
+    m_round = 0;
     m_artistIndex = 0;
-    m_players.resetAllScores();   // на всякий случай очки с нуля
+    m_players.resetAllScores();
 }
 
 bool GameEngine::isSessionActive() const {
@@ -29,12 +27,12 @@ PlayerManager& GameEngine::players() {
     return m_players;
 }
 
-// ================= ХОД / РАУНД =================
+// ХОД / РАУНД
 
 void GameEngine::startTurn() {
     m_round++;   // переходим к следующему раунду
 
-    // Художник определяется порядком регистрации игроков (ТЗ 3.1.4).
+    // Художник определяется порядком регистрации игроков
     // Раунд 1 -> игрок 0, раунд 2 -> игрок 1, и по кругу.
     if (m_players.count() > 0) {
         m_artistIndex = (m_round - 1) % m_players.count();
@@ -42,7 +40,7 @@ void GameEngine::startTurn() {
         m_artistIndex = 0;
     }
 
-    // Получаем 3 слова на выбор для текущей сложности (ТЗ 3.1.5).
+    // Получаем 3 слова на выбор для текущей сложности.
     m_wordChoices = m_dictionary.getRandomWords(m_difficulty, 3);
     m_chosenWord = "";
 }
@@ -76,7 +74,7 @@ std::string GameEngine::chosenWord() const {
     return m_chosenWord;
 }
 
-// ================= ТАЙМЕР =================
+// ТАЙМЕР
 
 void GameEngine::startTimer(int seconds) {
     m_secondsLeft = seconds;
@@ -100,13 +98,13 @@ void GameEngine::endTurnEarly() {
     m_secondsLeft = 0;   // как будто время вышло -> ход завершается
 }
 
-// ================= ОЧКИ =================
+// ОЧКИ
 
 void GameEngine::addPoints(int playerIndex, int points) {
     m_players.addPoints(playerIndex, points);
 }
 
-// ================= КОНЕЦ ИГРЫ =================
+// КОНЕЦ ИГРЫ
 
 bool GameEngine::isGameOver() const {
     return m_players.findWinner(m_targetScore) != -1;

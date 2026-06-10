@@ -9,7 +9,6 @@ class PlayerManager {
 public:
     void addPlayer(const std::string& name);                 // добавить игрока
     void removePlayer(int index);                            // удалить игрока по номеру
-    void renamePlayer(int index, const std::string& newName);// переименовать игрока
 
     int count() const;                       // сколько игроков
     Player& player(int index);               // получить игрока по номеру (для изменения)

@@ -10,6 +10,7 @@
 #include <QGridLayout>
 #include <QResizeEvent>
 
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget* parent)
       m_wordHidden(false)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Игра крокодил");
     this->setFixedSize(780, 600);
 
 
@@ -102,6 +104,20 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
 
 void MainWindow::onStart() {
     ui->listPlayers->clear();
+
+    // Сбрасываем выбор режима сложности
+    ui->radioEasy->setAutoExclusive(false);
+    ui->radioMedium->setAutoExclusive(false);
+    ui->radioHard->setAutoExclusive(false);
+
+    ui->radioEasy->setChecked(false);
+    ui->radioMedium->setChecked(false);
+    ui->radioHard->setChecked(false);
+
+    ui->radioEasy->setAutoExclusive(true);
+    ui->radioMedium->setAutoExclusive(true);
+    ui->radioHard->setAutoExclusive(true);
+
     ui->stack->setCurrentIndex(1);
 }
 
@@ -154,8 +170,15 @@ void MainWindow::onRemovePlayer() {
 }
 
 void MainWindow::onStartGame() {
-    if (ui->listPlayers->count() < 2) {
-        QMessageBox::warning(this, "Ошибка", "Добавьте хотя бы 2 игроков!");
+    if (ui->listPlayers->count() < 3) {
+        QMessageBox::warning(this, "Ошибка", "Добавьте хотя бы 3 игроков!");
+        return;
+    }
+
+    if (!ui->radioEasy->isChecked() &&
+        !ui->radioMedium->isChecked() &&
+        !ui->radioHard->isChecked()) {
+        QMessageBox::warning(this, "Ошибка", "Выберите режим сложности!");
         return;
     }
 
@@ -185,7 +208,7 @@ void MainWindow::showWordScreen() {
     "</table>")
     .arg(QString::fromStdString(m_game.currentArtistName()))
     .arg(m_game.currentRound());
-    ui->lblWordHeader_2->setText(header);
+    ui->lblWordHeader->setText(header);
 
     auto words = m_game.wordChoices();
     if (words.size() >= 3) {
@@ -193,17 +216,36 @@ void MainWindow::showWordScreen() {
         ui->radioWord1->setText(QString::fromStdString(words[1]));
         ui->radioWord2->setText(QString::fromStdString(words[2]));
     }
-    ui->radioWord0->setChecked(true);
+    ui->radioWord0->setAutoExclusive(false);
+    ui->radioWord1->setAutoExclusive(false);
+    ui->radioWord2->setAutoExclusive(false);
+
+    ui->radioWord0->setChecked(false);
+    ui->radioWord1->setChecked(false);
+    ui->radioWord2->setChecked(false);
+
+    ui->radioWord0->setAutoExclusive(true);
+    ui->radioWord1->setAutoExclusive(true);
+    ui->radioWord2->setAutoExclusive(true);
+
     ui->stack->setCurrentIndex(2);
 }
 
 void MainWindow::onConfirmWord() {
+    if (!ui->radioWord0->isChecked() &&
+        !ui->radioWord1->isChecked() &&
+        !ui->radioWord2->isChecked()) {
+        QMessageBox::warning(this, "Ошибка", "Выберите слово!");
+        return;
+    }
+
     int idx = 0;
     if (ui->radioWord1->isChecked()) idx = 1;
     if (ui->radioWord2->isChecked()) idx = 2;
     m_game.chooseWord(idx);
     showDrawScreen();
 }
+
 
 //  ЭКРАН 3 — Рисование
 void MainWindow::showDrawScreen() {
@@ -334,6 +376,7 @@ void MainWindow::showScoreScreen() {
         }
         delete ui->scoreArea->layout();
     }
+
     for (QWidget* w : ui->scoreArea->findChildren<QWidget*>(
              QString(), Qt::FindDirectChildrenOnly)) {
         w->deleteLater();
@@ -349,7 +392,7 @@ void MainWindow::showScoreScreen() {
 
         QLabel* lblName = new QLabel(
             QString::fromStdString(m_game.players().player(i).name()));
-        lblName->setMinimumWidth(120);
+        lblName->setFixedWidth(200);
 
         QPushButton* btnPlus  = new QPushButton("+3");
         QPushButton* btnMinus = new QPushButton("-3");
@@ -369,11 +412,14 @@ void MainWindow::showScoreScreen() {
             QString("%1 / 20").arg(m_game.players().player(i).score()));
         lblScore->setMinimumWidth(90);
 
+
         connect(btnPlus, &QPushButton::clicked, this, [this, i, lblScore]() {
+            if (m_game.players().player(i).score() >= 21) return;
             m_game.addPoints(i, 3);
             lblScore->setText(
                 QString("%1 / 20").arg(m_game.players().player(i).score()));
         });
+
         connect(btnMinus, &QPushButton::clicked, this, [this, i, lblScore]() {
             m_game.addPoints(i, -3);
             lblScore->setText(
@@ -395,7 +441,7 @@ void MainWindow::showScoreScreen() {
 void MainWindow::onContinue() {
     if (m_game.isGameOver()) {
         ui->lblWinner->setText(
-            QString("%1 Победил!")
+            QString("%1 победил!")
                 .arg(QString::fromStdString(m_game.winnerName())));
         ui->stack->setCurrentIndex(5);
     } else {
@@ -415,7 +461,7 @@ void MainWindow::onNewGame() {
 // Правила
 void MainWindow::onShowRules() {
     QMessageBox::information(this, "Правила игры «Крокодил»",
-        "1. Добавьте игроков и выберите режим сложности.\n"
+        "1. Добавьте игроков (минимум 3) и выберите режим сложности.\n"
         "2. Художник выбирает одно из трёх слов.\n"
         "3. Художник рисует слово за 60 секунд,\n"
         "   остальные угадывают вслух.\n"

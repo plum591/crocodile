@@ -97,13 +97,7 @@ private slots:
         pm.removePlayer(99);                         // несуществующий индекс
         QCOMPARE(pm.count(), 1);
     }
-    // renamePlayer
-    void test_renamePlayer_changesName() {
-        PlayerManager pm;
-        pm.addPlayer("Аня");
-        pm.renamePlayer(0, "Алиса");
-        QCOMPARE(pm.player(0).name(), std::string("Алиса"));
-    }
+
     // addPoints
     void test_addPoints_correctPlayer() {
         PlayerManager pm;

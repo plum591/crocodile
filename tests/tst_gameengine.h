@@ -3,9 +3,8 @@
 #include <QtTest>
 #include "gameengine.h"
 
-// ============================================================
-//  Вспомогательная функция: создать игру с N игроками
-// ============================================================
+
+//  Вспомогательная функция: создать игру с n игроками
 static GameEngine makeGame(int playerCount = 3,
                            Difficulty diff = Difficulty::Medium,
                            int target = 20)
@@ -18,15 +17,13 @@ static GameEngine makeGame(int playerCount = 3,
     return g;
 }
 
-// ============================================================
 //  Тесты GameEngine
-// ============================================================
 class TestGameEngine : public QObject {
     Q_OBJECT
 
 private slots:
 
-    // ─── startSession ───────────────────────────────────────
+    // startSession
 
     void test_startSession_isActive() {
         GameEngine g = makeGame();
@@ -42,7 +39,7 @@ private slots:
         QCOMPARE(g.players().player(0).score(), 0);
     }
 
-    // ─── startTurn / currentRound ────────────────────────────
+    // startTurn / currentRound
 
     void test_startTurn_incrementsRound() {
         GameEngine g = makeGame();
@@ -58,7 +55,7 @@ private slots:
         g.startTurn(); QCOMPARE(g.currentArtistIndex(), 0);
         g.startTurn(); QCOMPARE(g.currentArtistIndex(), 1);
         g.startTurn(); QCOMPARE(g.currentArtistIndex(), 2);
-        g.startTurn(); QCOMPARE(g.currentArtistIndex(), 0); // по кругу
+        g.startTurn(); QCOMPARE(g.currentArtistIndex(), 0);
     }
 
     void test_startTurn_artistNameMatchesIndex() {
@@ -68,8 +65,7 @@ private slots:
         QCOMPARE(g.currentArtistName(), expected);
     }
 
-    // ─── wordChoices ─────────────────────────────────────────
-
+    // wordChoices
     void test_startTurn_wordChoicesCount() {
         GameEngine g = makeGame();
         g.startTurn();
@@ -92,7 +88,7 @@ private slots:
         QVERIFY(words[0] != words[2]);
     }
 
-    // ─── chooseWord ──────────────────────────────────────────
+    // chooseWord
 
     void test_chooseWord_validIndex_setsWord() {
         GameEngine g = makeGame();
@@ -106,7 +102,7 @@ private slots:
         g.startTurn();
         g.chooseWord(0);
         std::string before = g.chosenWord();
-        g.chooseWord(99);           // невалидный индекс
+        g.chooseWord(99);
         QCOMPARE(g.chosenWord(), before);
     }
 
@@ -119,7 +115,7 @@ private slots:
         QVERIFY(g.chosenWord().empty());
     }
 
-    // ─── Таймер ──────────────────────────────────────────────
+    // Таймер
 
     void test_timer_startsWithGivenSeconds() {
         GameEngine g = makeGame();
@@ -138,7 +134,7 @@ private slots:
         GameEngine g = makeGame();
         g.startTimer(1);
         g.tick();
-        g.tick(); // лишний tick
+        g.tick();
         QCOMPARE(g.secondsLeft(), 0);
     }
 
@@ -158,7 +154,7 @@ private slots:
         QCOMPARE(g.secondsLeft(), 0);
     }
 
-    // ─── addPoints / isGameOver ──────────────────────────────
+    // addPoints / isGameOver
 
     void test_addPoints_updatesScore() {
         GameEngine g = makeGame(2);
@@ -195,7 +191,7 @@ private slots:
         QCOMPARE(g.winnerIndex(), -1);
     }
 
-    // ─── resetGame ───────────────────────────────────────────
+    // resetGame
 
     void test_resetGame_sessionNotActive() {
         GameEngine g = makeGame(2);

@@ -10,7 +10,7 @@ class TestDrawingCanvas : public QObject {
 
 private slots:
 
-    // ─── Инициализация холста ──────────────────────────────────
+    // Инициализация холста
 
     void test_initialBackground_isWhite() {
         DrawingCanvas c;
@@ -23,7 +23,7 @@ private slots:
         QCOMPARE(topLeft, QColor(Qt::white));
     }
 
-    // ─── Очистка холста ────────────────────────────────────────
+    // Очистка холста
 
     void test_clear_resetsToWhite() {
         DrawingCanvas c;
@@ -47,8 +47,7 @@ private slots:
         QCOMPARE(center, QColor(Qt::white));
     }
 
-    // ─── Проверка выбора цвета ─────────────────────────────────
-
+    // Проверка выбора цвета
     void test_setPenColor_drawsWithChosenColor() {
         DrawingCanvas c;
         c.resize(200, 200);
@@ -56,24 +55,23 @@ private slots:
         QVERIFY(QTest::qWaitForWindowExposed(&c));
 
         c.setPenColor(Qt::blue);
-        c.setPenWidth(24); // Делаем линию потолще, чтобы точно попасть тестом
+        c.setPenWidth(24);
 
         // Рисуем явную линию из (80, 80) в (120, 120)
         QTest::mousePress(&c, Qt::LeftButton, Qt::NoModifier, QPoint(80, 80));
         QTest::mouseMove(&c, QPoint(120, 120));
         QTest::mouseRelease(&c, Qt::LeftButton, Qt::NoModifier, QPoint(120, 120));
 
-        // Даем Qt время отрендерить графику в буфер
         QCoreApplication::processEvents();
         QTest::qWait(50);
 
         QImage img = c.grab().toImage();
-        QColor drawn = img.pixelColor(100, 100); // Проверяем строго центр мазка
+        QColor drawn = img.pixelColor(100, 100);
 
         QVERIFY2(drawn != QColor(Qt::white), "Пиксель остался белым! Рисование не произошло.");
     }
 
-    // ─── Проверка ластика ──────────────────────────────────────
+    // Проверка ластика
 
     void test_setEraser_erasesDrawnPixel() {
         DrawingCanvas c;
@@ -81,7 +79,7 @@ private slots:
         c.show();
         QVERIFY(QTest::qWaitForWindowExposed(&c));
 
-        // 1. Сначала рисуем чёрную жирную линию
+        // Рисуем чёрную жирную линию
         c.setPenColor(Qt::black);
         c.setPenWidth(24);
         QTest::mousePress(&c, Qt::LeftButton, Qt::NoModifier, QPoint(80, 80));
@@ -89,13 +87,13 @@ private slots:
         QTest::mouseRelease(&c, Qt::LeftButton, Qt::NoModifier, QPoint(120, 120));
         QCoreApplication::processEvents();
 
-        // Проверяем, что след остался
+        // Проверяем полоску
         {
             QImage img = c.grab().toImage();
             QVERIFY(img.pixelColor(100, 100) != QColor(Qt::white));
         }
 
-        // 2. Включаем ластик и проводим по той же траектории
+        // Проходим ластиком
         c.setEraser(true);
         QTest::mousePress(&c, Qt::LeftButton, Qt::NoModifier, QPoint(80, 80));
         QTest::mouseMove(&c, QPoint(120, 120));
@@ -107,7 +105,7 @@ private slots:
         QCOMPARE(img.pixelColor(100, 100), QColor(Qt::white));
     }
 
-    // ─── Автоматический сброс ластика при смене цвета ─────────
+    // Сброс ластика при смене цвета
 
     void test_setPenColor_disablesEraser() {
         DrawingCanvas c;
@@ -116,7 +114,7 @@ private slots:
         QVERIFY(QTest::qWaitForWindowExposed(&c));
 
         c.setEraser(true);
-        c.setPenColor(Qt::red); // Этот вызов должен внутри сделать setEraser(false)
+        c.setPenColor(Qt::red);
 
         c.setPenWidth(24);
         QTest::mousePress(&c, Qt::LeftButton, Qt::NoModifier, QPoint(80, 80));
@@ -126,11 +124,11 @@ private slots:
         QTest::qWait(50);
 
         QImage img = c.grab().toImage();
-        // Если ластик выключился, тут будет красный цвет (не белый)
+        // Если ластик выключился, тут будет красный цвет
         QVERIFY(img.pixelColor(100, 100) != QColor(Qt::white));
     }
 
-    // ─── Проверка толщины линии ────────────────────────────────
+    // Проверка толщины линии
 
     void test_setPenWidth_thinLine_lessCoverage() {
         auto countNonWhite = [](DrawingCanvas& c) -> int {
@@ -169,7 +167,7 @@ private slots:
         QVERIFY(countNonWhite(cThin) < countNonWhite(cThick));
     }
 
-    // ─── Защита от рисования без нажатия ───────────────────────
+    // Защита от рисования без нажатия
 
     void test_noDrawWithoutMousePress() {
         DrawingCanvas c;
@@ -180,7 +178,7 @@ private slots:
         c.setPenColor(Qt::black);
         c.setPenWidth(10);
 
-        // Просто двигаем мышь БЕЗ нажатия (через QTest::mouseMove)
+        // Двигаем мышь без нажатия
         QTest::mouseMove(&c, QPoint(100, 100));
         QCoreApplication::processEvents();
 

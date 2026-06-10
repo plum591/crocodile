@@ -5,7 +5,7 @@
 class TestWordDictionary : public QObject {
     Q_OBJECT
 private slots:
-    // ─── Количество возвращаемых слов ────────────────────────
+    // Количество возвращаемых слов
     void test_getRandomWords_easy_returnsThree() {
         WordDictionary d;
         auto words = d.getRandomWords(Difficulty::Easy, 3);
@@ -21,7 +21,7 @@ private slots:
         auto words = d.getRandomWords(Difficulty::Hard, 3);
         QCOMPARE((int)words.size(), 3);
     }
-    // ─── Слова не пустые ─────────────────────────────────────
+    // Слова не пустые
     void test_getRandomWords_easy_allNonEmpty() {
         WordDictionary d;
         for (const auto& w : d.getRandomWords(Difficulty::Easy, 3))
@@ -37,7 +37,7 @@ private slots:
         for (const auto& w : d.getRandomWords(Difficulty::Hard, 3))
             QVERIFY(!w.empty());
     }
-    // ─── Слова уникальны внутри одного запроса ───────────────
+    // Слова уникальны внутри одного запроса
     void test_getRandomWords_easy_uniqueWithinCall() {
         WordDictionary d;
         auto words = d.getRandomWords(Difficulty::Easy, 3);
@@ -59,7 +59,7 @@ private slots:
         QVERIFY(words[1] != words[2]);
         QVERIFY(words[0] != words[2]);
     }
-    // ─── Слова принадлежат правильному словарю ───────────────
+    // Слова принадлежат правильному словарю
     void test_getRandomWords_easy_wordsFromEasyList() {
         // Известные слова из списка (из worddictionary.cpp)
         const std::vector<std::string> easyKnown = {
@@ -86,7 +86,7 @@ private slots:
             QVERIFY2(found, ("Слово не из Hard-словаря: " + w).c_str());
         }
     }
-    // ─── Разные сложности не пересекаются ────────────────────
+    // Разные сложности не пересекаются
     void test_easyAndHard_wordsDontOverlap() {
         // Запрашиваем по 3 слова много раз и проверяем, что easy-слово
         // никогда не попадёт в hard (списки заведомо разные)
@@ -101,13 +101,13 @@ private slots:
             QVERIFY(!inEasy);
         }
     }
-    // ─── Запрос count=1 ──────────────────────────────────────
+    // Запрос count=1
     void test_getRandomWords_countOne_returnsOne() {
         WordDictionary d;
         auto words = d.getRandomWords(Difficulty::Medium, 1);
         QCOMPARE((int)words.size(), 1);
     }
-    // ─── Случайность: повторные вызовы дают разные наборы ────
+    // Случайность
     void test_getRandomWords_randomness_notAlwaysSame() {
         // За 20 вызовов наборы не должны быть полностью идентичными хотя бы раз
         WordDictionary d;

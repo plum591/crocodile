@@ -2,13 +2,10 @@
 #include <QtTest>
 #include "player.h"
 #include "playermanager.h"
-// ============================================================
 //  Тесты класса Player
-// ============================================================
 class TestPlayer : public QObject {
     Q_OBJECT
 private slots:
-    // --- Конструктор ---
     void test_constructor_setsName() {
         Player p("Аня");
         QCOMPARE(p.name(), std::string("Аня"));
@@ -17,7 +14,7 @@ private slots:
         Player p("Боря");
         QCOMPARE(p.score(), 0);
     }
-    // --- addPoints ---
+    // addPoints
     void test_addPoints_positive() {
         Player p("Вика");
         p.addPoints(3);
@@ -47,27 +44,25 @@ private slots:
         p.addPoints(3);
         QCOMPARE(p.score(), 9);
     }
-    // --- resetScore ---
+    // resetScore
     void test_resetScore_setsZero() {
         Player p("Зоя");
         p.addPoints(15);
         p.resetScore();
         QCOMPARE(p.score(), 0);
     }
-    // --- setName ---
+    // setName
     void test_setName_changesName() {
         Player p("Иван");
         p.setName("Игорь");
         QCOMPARE(p.name(), std::string("Игорь"));
     }
 };
-// ============================================================
 //  Тесты класса PlayerManager
-// ============================================================
 class TestPlayerManager : public QObject {
     Q_OBJECT
 private slots:
-    // --- addPlayer / count ---
+    // addPlayer / count
     void test_addPlayer_incrementsCount() {
         PlayerManager pm;
         QCOMPARE(pm.count(), 0);
@@ -81,7 +76,7 @@ private slots:
         pm.addPlayer("Аня");
         QCOMPARE(pm.player(0).name(), std::string("Аня"));
     }
-    // --- removePlayer ---
+    // removePlayer
     void test_removePlayer_decrementsCount() {
         PlayerManager pm;
         pm.addPlayer("Аня");
@@ -102,14 +97,14 @@ private slots:
         pm.removePlayer(99);                         // несуществующий индекс
         QCOMPARE(pm.count(), 1);
     }
-    // --- renamePlayer ---
+    // renamePlayer
     void test_renamePlayer_changesName() {
         PlayerManager pm;
         pm.addPlayer("Аня");
         pm.renamePlayer(0, "Алиса");
         QCOMPARE(pm.player(0).name(), std::string("Алиса"));
     }
-    // --- addPoints ---
+    // addPoints
     void test_addPoints_correctPlayer() {
         PlayerManager pm;
         pm.addPlayer("Аня");
@@ -118,7 +113,7 @@ private slots:
         QCOMPARE(pm.player(0).score(), 0);
         QCOMPARE(pm.player(1).score(), 6);
     }
-    // --- resetAllScores ---
+    // resetAllScores
     void test_resetAllScores_allBecomZero() {
         PlayerManager pm;
         pm.addPlayer("Аня");
@@ -129,7 +124,7 @@ private slots:
         QCOMPARE(pm.player(0).score(), 0);
         QCOMPARE(pm.player(1).score(), 0);
     }
-    // --- findWinner ---
+    // findWinner
     void test_findWinner_noWinner_returnsMinusOne() {
         PlayerManager pm;
         pm.addPlayer("Аня");

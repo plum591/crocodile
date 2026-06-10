@@ -1,6 +1,6 @@
 #include "worddictionary.h"
-#include <algorithm>   // для std::shuffle
-#include <random>      // для генератора случайных чисел
+#include <algorithm>
+#include <random>
 
 WordDictionary::WordDictionary() {
     // Лёгкие слова
@@ -35,15 +35,13 @@ const std::vector<std::string>& WordDictionary::listFor(Difficulty difficulty) c
 }
 
 std::vector<std::string> WordDictionary::getRandomWords(Difficulty difficulty, int count) {
-    // Берём копию нужного списка, чтобы перемешать её и не испортить оригинал.
     std::vector<std::string> pool = listFor(difficulty);
 
     // Перемешиваем список в случайном порядке.
-    // static — чтобы генератор создавался один раз, а не при каждом вызове.
     static std::mt19937 generator(std::random_device{}());
     std::shuffle(pool.begin(), pool.end(), generator);
 
-    // Берём первые count слов (но не больше, чем есть в списке).
+    // Берём первые 3 слова
     std::vector<std::string> result;
     for (int i = 0; i < count && i < (int)pool.size(); i++) {
         result.push_back(pool[i]);

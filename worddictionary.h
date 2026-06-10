@@ -13,7 +13,6 @@ public:
     WordDictionary();
 
     // Выдать count случайных НЕповторяющихся слов нужной сложности.
-    // По ТЗ 3.1.5 художнику даётся выбор из трёх слов, поэтому count = 3 по умолчанию.
     std::vector<std::string> getRandomWords(Difficulty difficulty, int count = 3);
 
 private:

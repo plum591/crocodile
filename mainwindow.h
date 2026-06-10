@@ -73,4 +73,4 @@ private:
     bool m_wordHidden;     // скрыто ли слово на экране рисования
 };
 
-#endif // MAINWINDOW_H
+#endif

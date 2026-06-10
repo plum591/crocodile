@@ -3,18 +3,16 @@
 
 #include <string>
 
-// Один игрок: его имя и счёт.
-// Соответствует "Player Profiles" + "Score Storage" из диаграммы компонентов.
 class Player {
 public:
     // Создаём игрока с именем. Счёт в начале всегда 0.
     Player(const std::string& name);
 
-    // --- Имя ---
+    // Имя
     std::string name() const;                 // получить имя
-    void setName(const std::string& name);    // переименовать (ТЗ: Удалить/Переименовать)
+    void setName(const std::string& name);    // переименовать
 
-    // --- Счёт ---
+    // Счёт
     int score() const;                 // текущий счёт
     void addPoints(int points);        // прибавить (или отнять) очки
     void resetScore();                 // обнулить счёт (для новой игры)
@@ -24,4 +22,4 @@ private:
     int m_score;          // счёт игрока
 };
 
-#endif // PLAYER_H
+#endif

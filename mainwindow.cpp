@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget* parent)
       m_wordHidden(false)
 {
     ui->setupUi(this);
+    this->setFixedSize(780, 600);
+
 
     // Таймер
     m_timer = new QTimer(this);
@@ -54,10 +56,10 @@ MainWindow::MainWindow(QWidget* parent)
     connect(ui->btnMenuExit,     &QPushButton::clicked, this, &MainWindow::onMenuExit);
     connect(ui->btnMenuOk,       &QPushButton::clicked, this, &MainWindow::onMenuOk);
 
-    // --- Палитра рисования ---
+    // Палитра рисования
     buildPalette();
 
-    // --- Плавающие кнопки "≡" и "?" ---
+    // Плавающие кнопки "≡" и "?"
     m_btnMenu = new QPushButton("≡", this);
     m_btnMenu->setFixedSize(26, 26);
     m_btnMenu->move(10, 11);
@@ -173,7 +175,6 @@ void MainWindow::onConfirmWord() {
 
 //  ЭКРАН 3 — Рисование
 void MainWindow::showDrawScreen() {
-    // Ход слева, Раунд справа через HTML
     QString header = QString(
     "<table width='100%'>"
     "<tr>"
@@ -371,7 +372,7 @@ void MainWindow::onContinue() {
     }
 }
 
-//  ЭКРАН 5 — Конец игры
+// ЭКРАН 5 — Конец игры
 void MainWindow::onNewGame() {
     m_game.resetGame();
     ui->listPlayers->clear();
@@ -379,7 +380,7 @@ void MainWindow::onNewGame() {
     ui->stack->setCurrentIndex(0);
 }
 
-//  ПЛАВАЮЩИЕ КНОПКИ
+// Правила
 void MainWindow::onShowRules() {
     QMessageBox::information(this, "Правила игры «Крокодил»",
         "1. Добавьте игроков и выберите режим сложности.\n"

@@ -5,7 +5,6 @@ void PlayerManager::addPlayer(const std::string& name) {
 }
 
 void PlayerManager::removePlayer(int index) {
-    // Проверяем, что номер правильный (не вышли за границы списка)
     if (index >= 0 && index < (int)m_players.size()) {
         m_players.erase(m_players.begin() + index);
     }

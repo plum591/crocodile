@@ -113,11 +113,37 @@ void MainWindow::onExit() {
 void MainWindow::onAddPlayer() {
     bool ok = false;
     QString name = QInputDialog::getText(this, "Новый игрок",
-                                         "Имя игрока:", QLineEdit::Normal,
-                                         "", &ok);
-    if (ok && !name.trimmed().isEmpty()) {
-        ui->listPlayers->addItem(name);
+                                         "Имя игрока:",
+                                         QLineEdit::Normal, "", &ok);
+    if (!ok) {
+        return;   // нажали "Отмена"
     }
+
+    name = name.trimmed();
+
+    // Проверка: имя не пустое
+    if (name.isEmpty()) {
+        QMessageBox::warning(this, "Ошибка", "Имя не может быть пустым!");
+        return;
+    }
+
+    // Проверка: имя не длиннее 12 символов
+    if (name.length() > 12) {
+        QMessageBox::warning(this, "Ошибка",
+                             "Имя игрока не может превышать 12 символов!");
+        return;
+    }
+
+    // Проверка: такое имя уже есть в списке
+    for (int i = 0; i < ui->listPlayers->count(); i++) {
+        if (ui->listPlayers->item(i)->text() == name) {
+            QMessageBox::warning(this, "Ошибка",
+                                 "Игрок с таким именем уже существует!");
+            return;
+        }
+    }
+
+    ui->listPlayers->addItem(name);
 }
 
 void MainWindow::onRemovePlayer() {
@@ -134,8 +160,8 @@ void MainWindow::onStartGame() {
     }
 
     Difficulty diff = Difficulty::Easy;
-    if (ui->radioMedium->isChecked()) diff = Difficulty::Medium;
-    if (ui->radioHard->isChecked())   diff = Difficulty::Hard;
+    if (ui->radioMedium->isChecked())diff = Difficulty::Medium;
+    if (ui->radioHard->isChecked())diff = Difficulty::Hard;
 
     m_game.resetGame();
     m_game.startSession(diff, 20);
@@ -150,10 +176,16 @@ void MainWindow::onStartGame() {
 
 //  ЭКРАН 2 — Выбор слова
 void MainWindow::showWordScreen() {
-    QString header = QString("Ход: %1   |   Раунд: %2")
-        .arg(QString::fromStdString(m_game.currentArtistName()))
-        .arg(m_game.currentRound());
-    ui->lblWordHeader->setText(header);
+    QString header = QString(
+    "<table width='100%'>"
+    "<tr>"
+    "<td align='left'>Ход: %1</td>"
+    "<td align='right'>Раунд: %2</td>"
+    "</tr>"
+    "</table>")
+    .arg(QString::fromStdString(m_game.currentArtistName()))
+    .arg(m_game.currentRound());
+    ui->lblWordHeader_2->setText(header);
 
     auto words = m_game.wordChoices();
     if (words.size() >= 3) {

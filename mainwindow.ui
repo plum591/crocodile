@@ -41,7 +41,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page_1">
      <property name="font">
@@ -128,7 +128,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>20</y>
+        <y>30</y>
         <width>141</width>
         <height>41</height>
        </rect>
@@ -141,7 +141,7 @@
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>10</y>
+        <y>20</y>
         <width>111</width>
         <height>61</height>
        </rect>
@@ -256,9 +256,9 @@
      <widget class="QLabel" name="lblWordHeader">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>741</width>
+        <x>30</x>
+        <y>0</y>
+        <width>701</width>
         <height>91</height>
        </rect>
       </property>
@@ -345,9 +345,9 @@
      <widget class="QLabel" name="lblWordHeader_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>30</x>
         <y>0</y>
-        <width>751</width>
+        <width>701</width>
         <height>91</height>
        </rect>
       </property>
@@ -358,8 +358,8 @@
      <widget class="QLabel" name="lblTimer">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>20</y>
+        <x>320</x>
+        <y>30</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -429,7 +429,7 @@
           </font>
          </property>
          <property name="text">
-          <string>скрыть</string>
+          <string>Скрыть</string>
          </property>
         </widget>
        </item>

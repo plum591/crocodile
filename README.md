@@ -20,7 +20,9 @@ git clone (https://github.com/plum591/crocodile.git).
 ### Шаг 3. Сборка и запуск игры
 1. В левом верхнем углу во вкладке сборка выберите "Запустить qmake".
 2. Нажмите кнопку «Запустить» (зелёный треугольник в левой панели).
-   <img width="319" height="182" alt="Снимок экрана 2026-06-14 162826" src="https://github.com/user-attachments/assets/4a42b799-1bc3-4e02-b587-ea4db9227058" />
+   
+<img width="319" height="182" alt="Снимок экрана 2026-06-14 162826" src="https://github.com/user-attachments/assets/4a42b799-1bc3-4e02-b587-ea4db9227058" />
+
 4. Среда запустит стартовое окно приложения.
 
 ### Шаг 4. Как играть 
